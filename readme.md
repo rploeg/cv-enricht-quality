@@ -4,12 +4,17 @@ This implementation uses Azure AI Foundry's Agent Service to analyze packaging d
 
 
 Start the following scripts on a virtual environment:
+```bash
 publish mqtt messages: .\.venv\Scripts\python.exe cv_publisher.py
 mqtt listener:  .\.venv\Scripts\python.exe .\mqtt_listener.py
 agent service reasoner: .\.venv\Scripts\python.exe azure_foundry_reasoner.py
 
-If you want to test only the agent service with only images use this one (without mqtt): .\.venv\Scripts\python.exe test_azure_foundry.py
+```
 
+If you want to test only the agent service with only images use this one (without mqtt): 
+```bash
+.\.venv\Scripts\python.exe test_azure_foundry.py
+```
 ## Features
 
 - **Azure AI Foundry Integration**: Uses Azure AI Foundry Agent Service for vision analysis
@@ -98,7 +103,7 @@ AZURE_TENANT_ID=your-tenant-id
 ### 5. Run the Application
 
 ```bash
-python azure_foundry_reasoner.py
+.\.venv\Scripts\python.exe python azure_foundry_reasoner.py
 ```
 
 ## Configuration Options
