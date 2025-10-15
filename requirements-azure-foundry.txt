@@ -1,0 +1,13 @@
+# Azure AI Foundry Vision Reasoner Requirements
+# Core Azure AI Foundry dependencies
+azure-ai-projects>=1.0.0
+azure-identity>=1.15.0
+
+# Image processing
+Pillow>=10.0.0
+
+# MQTT communication  
+paho-mqtt>=1.6.0
+
+# Environment variable loading (required for .env file)
+python-dotenv>=1.0.0
