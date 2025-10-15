@@ -66,7 +66,6 @@ AGENT_ID=asst_your_agent_id_here
 ```
 
 
-
 ### 3. Azure Authentication Setup
 
 #### Option A: Managed Identity (Recommended for Azure-hosted)
@@ -227,68 +226,3 @@ Failed to convert image to base64
 MQTT connection failed with code: 5
 ```
 **Solution**: Verify MQTT broker is running and accessible.
-
-### Debug Mode
-
-Enable verbose logging by setting:
-```bash
-export PYTHONPATH="${PYTHONPATH}:."
-python -v azure_foundry_reasoner.py
-```
-
-## Comparison with Local SLM
-
-| Feature | Local SLM | Azure AI Foundry |
-|---------|-----------|------------------|
-| **Model Quality** | Moondream2 (1.6GB) | GPT-4o/4.1 (Large) |
-| **Analysis Depth** | Basic defect detection | Advanced reasoning |
-| **Scalability** | GPU memory limited | Cloud-scale |
-| **Latency** | ~2-5 seconds | ~5-15 seconds |
-| **Cost** | Hardware only | Per-token usage |
-| **Offline** | ✅ Works offline | ❌ Requires internet |
-| **Setup** | Complex GPU setup | Simple cloud config |
-
-## Production Deployment
-
-### Azure Container Instances
-
-```yaml
-apiVersion: 2019-12-01
-location: eastus
-name: azure-foundry-reasoner
-properties:
-  containers:
-  - name: reasoner
-    properties:
-      image: your-registry/azure-foundry-reasoner:latest
-      resources:
-        requests:
-          cpu: 1
-          memoryInGb: 2
-      environmentVariables:
-      - name: AZURE_PROJECT_ENDPOINT
-        value: "https://your-foundry.services.ai.azure.com/api/projects/project"
-      - name: AGENT_ID
-        value: "asst_your_agent_id"
-  restartPolicy: Always
-  osType: Linux
-```
-
-### Kubernetes Deployment
-
-See `k8s/40-azure-foundry-reasoner.yaml` for Kubernetes deployment configuration.
-
-## Cost Optimization
-
-- **Image Compression**: Automatic image optimization reduces token usage
-- **Efficient Prompts**: Structured prompts minimize token consumption  
-- **Resource Cleanup**: Automatic cleanup prevents resource accumulation
-- **Batch Processing**: Consider batching multiple images for cost efficiency
-
-## Support
-
-For issues and questions:
-1. Check the troubleshooting section above
-2. Review Azure AI Foundry documentation
-3. Verify your agent configuration in Azure AI Foundry portal
-4. Check MQTT broker connectivity and configuration
